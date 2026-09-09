@@ -1,0 +1,26 @@
+Source: node-corepack
+Section: javascript
+Priority: optional
+Maintainer: Antony <antony@beyonk.com>
+Build-Depends: dpkg-dev (>= 1.21),
+               nodejs (>= 22),
+               npm
+Standards-Version: 4.7.0
+Homepage: https://github.com/nodejs/corepack
+Vcs-Git: https://github.com/nodejs/corepack.git
+Vcs-Browser: https://github.com/nodejs/corepack
+Rules-Requires-Root: no
+
+Package: corepack
+Architecture: all
+Depends: nodejs (>= 22)
+Description: package manager manager for Node.js projects (Yarn, pnpm)
+ Corepack is a zero-runtime-dependency Node.js script that acts as a
+ bridge between Node.js projects and the package managers they are
+ intended to be used with during development. In practical terms,
+ Corepack lets you use Yarn and pnpm without having to install them,
+ pinned at the exact version a project declares in its package.json
+ "packageManager" field.
+ .
+ This package installs the corepack command; run "corepack enable"
+ to expose the yarn/pnpm shims it manages.

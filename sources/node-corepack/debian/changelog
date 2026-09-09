@@ -1,0 +1,23 @@
+node-corepack (0.36.0+ds-1) unstable; urgency=medium
+
+  * New upstream release 0.36.0.
+  * Independent local repackaging of upstream v0.36.0, modelled on the
+    conventions of Debian's node-corepack source package (Debian
+    infrastructure was unreachable from this build environment, so this
+    packaging was written from scratch rather than derived from the
+    js-team packaging).
+  * Repack upstream tarball (+ds): exclude tests/nocks.db, a 57 MB
+    binary HTTP-fixture database only used by the test suite.
+  * debian/rules: standalone makefile build (no debhelper) so the
+    package builds on minimal systems; bundles sources with esbuild and
+    generates the dist entry scripts the same way upstream mkshims.ts
+    does. Note: devDependencies are fetched from the npm registry at
+    build time, so this source package is NOT suitable for upload to
+    the Debian archive as-is (archive builds must be offline).
+  * Apply upstream's clipanion "main" field fix
+    (.yarn/patches/clipanion-npm-3.2.1-fc9187f56c.patch) to the
+    npm-fetched clipanion before bundling, matching upstream's build.
+  * Test suite disabled: it requires network access and the excluded
+    fixture database.
+
+ -- Antony <antony@beyonk.com>  Tue, 09 Sep 2026 12:20:00 +0000

@@ -1,0 +1,76 @@
+#!/usr/bin/make -f
+# Standalone rules without debhelper, so the package can be built with
+# nothing more than dpkg-dev, nodejs and npm.
+#
+# NOTE: the build-deps step downloads corepack's devDependencies from
+# the npm registry, so unlike a Debian archive build this needs network
+# access at build time. That makes this source package unsuitable for
+# upload to the Debian archive as-is; it is meant for local rebuilds.
+
+PKG     := corepack
+PKGDIR  := debian/$(PKG)
+DOCDIR  := $(PKGDIR)/usr/share/doc/$(PKG)
+NODEDIR := $(PKGDIR)/usr/share/nodejs/corepack
+ESBUILD := build-deps/node_modules/.bin/esbuild
+
+# Pinned to the same major versions as upstream's devDependencies
+# (see package.json) at the time of packaging.
+BUILD_DEPS := esbuild@0.28 clipanion@3.2.1 debug@4 semver@7 which@7 \
+  @zkochan/cmd-shim@6 supports-color@11 tar@7 v8-compile-cache@2 \
+  proxy-from-env@1
+
+build: build-indep
+build-arch: build-indep
+binary: binary-indep
+binary-arch:
+
+build-deps/.stamp:
+	mkdir -p build-deps
+	# A local package.json stops npm from treating the corepack source
+	# tree as the project root (its yarn "patch:" protocol dependency
+	# crashes npm's resolver).
+	echo '{"name":"corepack-build-deps","private":true}' \
+	  > build-deps/package.json
+	cd build-deps && npm install --no-audit --no-fund $(BUILD_DEPS)
+	# Upstream builds against a patched clipanion (yarn "patch:"
+	# protocol); apply the same patch to the npm-fetched copy. The
+	# filename carries a content hash, so glob it.
+	cat .yarn/patches/clipanion-npm-*.patch \
+	  | patch -N -p1 -d build-deps/node_modules/clipanion
+	touch $@
+
+build-indep: build-deps/.stamp
+	ln -sfn build-deps/node_modules node_modules
+	# Same bundle invocation as upstream's "build:bundle" script.
+	$(ESBUILD) ./sources/_lib.ts --bundle --platform=node \
+	  --target=node22.22.2 --external:corepack \
+	  --outfile=./dist/lib/corepack.cjs \
+	  --resolve-extensions='.ts,.mjs,.js'
+	# Generate the dist entry scripts (mirrors upstream mkshims.ts,
+	# minus the Windows cmd-shim output a deb does not need).
+	node debian/mkdist.js
+
+binary-indep: build-indep
+	rm -rf $(PKGDIR)
+	install -d $(PKGDIR)/DEBIAN $(PKGDIR)/usr/bin \
+	  $(NODEDIR)/dist/lib $(DOCDIR)
+	install -m 0644 package.json $(NODEDIR)/
+	install -m 0644 dist/lib/corepack.cjs $(NODEDIR)/dist/lib/
+	install -m 0755 dist/*.js $(NODEDIR)/dist/
+	ln -s ../share/nodejs/corepack/dist/corepack.js \
+	  $(PKGDIR)/usr/bin/corepack
+	install -m 0644 debian/copyright $(DOCDIR)/copyright
+	install -m 0644 debian/changelog $(DOCDIR)/changelog.Debian
+	install -m 0644 CHANGELOG.md $(DOCDIR)/changelog
+	gzip -9n $(DOCDIR)/changelog.Debian $(DOCDIR)/changelog
+	dpkg-gencontrol -p$(PKG) -P$(PKGDIR)
+	cd $(PKGDIR) && find usr -type f -print0 | LC_ALL=C sort -z \
+	  | xargs -0 md5sum > DEBIAN/md5sums
+	find $(PKGDIR) -type d -exec chmod 0755 '{}' +
+	dpkg-deb --root-owner-group --build $(PKGDIR) ..
+
+clean:
+	rm -rf dist shims build-deps node_modules \
+	  $(PKGDIR) debian/files debian/*.substvars
+
+.PHONY: build build-arch build-indep binary binary-arch binary-indep clean
