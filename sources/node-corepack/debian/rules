@@ -7,7 +7,7 @@
 # access at build time. That makes this source package unsuitable for
 # upload to the Debian archive as-is; it is meant for local rebuilds.
 
-PKG     := corepack
+PKG     := node-corepack
 PKGDIR  := debian/$(PKG)
 DOCDIR  := $(PKGDIR)/usr/share/doc/$(PKG)
 NODEDIR := $(PKGDIR)/usr/share/nodejs/corepack

@@ -1,15 +1,17 @@
-Package: corepack
-Source: node-corepack
-Version: 0.36.0+ds-1
+Package: node-corepack
+Version: 0.36.0+ds-2
 Architecture: all
 Maintainer: Antony <antony@beyonk.com>
 Installed-Size: 555
 Depends: nodejs (>= 22)
-Filename: ./corepack_0.36.0+ds-1_all.deb
-Size: 106932
-MD5sum: 31db17eebd531b03fa7af886a8fb1474
-SHA1: 0c3f3d1823f3d375bed8f3d0bba2a77b37af312f
-SHA256: e7e5bc8068a1ee3447e87157a6b130c18261568ab2a8e6ca0ec160b3da3643ca
+Conflicts: corepack
+Replaces: corepack
+Provides: corepack
+Filename: ./node-corepack_0.36.0+ds-2_all.deb
+Size: 107114
+MD5sum: b9bd47e66af335eb6b591c729d0e1749
+SHA1: ee9dabdbd7dcbf4479a46bce3d2c99fe63e643cf
+SHA256: 2da7537c038121736432d91c1f64fa40c6dc62b88ff8f314b3e9ee13b5172c7e
 Section: javascript
 Priority: optional
 Homepage: https://github.com/nodejs/corepack

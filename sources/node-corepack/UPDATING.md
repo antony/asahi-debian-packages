@@ -9,8 +9,11 @@ bottom explains the non-obvious choices - read it before improvising.
 
 - Upstream: https://github.com/nodejs/corepack (MIT).
 - Debian-style source package `node-corepack` producing one
-  arch-independent binary package, `corepack` (same naming as Debian's
-  own node-corepack source package).
+  arch-independent binary package, also `node-corepack`. (Debian's own
+  node-corepack source builds a binary package named `corepack`; ours
+  is named node-corepack so it can never clash with the archive's, and
+  it Conflicts/Replaces/Provides `corepack` since it ships the same
+  files.)
 - The orig tarball is a `+ds` repack: upstream's git tag minus
   `tests/nocks.db` (a ~57 MB binary HTTP-fixture database used only by
   the test suite).
@@ -105,7 +108,7 @@ dpkg-buildpackage -b -us -uc -d
 
 ```sh
 cd "$WORK"
-dpkg-deb -x "corepack_$V+ds-1_all.deb" extract
+dpkg-deb -x "node-corepack_$V+ds-1_all.deb" extract
 
 extract/usr/bin/corepack --version           # must print $V
 
@@ -130,8 +133,8 @@ rm sources/node-corepack/node-corepack_*        # old source package files
 cp "$WORK"/node-corepack_$V+ds{.orig.tar.xz,-1.dsc,-1.debian.tar.xz} sources/node-corepack/
 rm -rf sources/node-corepack/debian
 cp -r "$WORK/node-corepack-$V+ds/debian" sources/node-corepack/
-rm repo/corepack_*_all.deb                      # or keep old versions if wanted
-cp "$WORK/corepack_$V+ds-1_all.deb" repo/
+rm repo/node-corepack_*_all.deb                      # or keep old versions if wanted
+cp "$WORK/node-corepack_$V+ds-1_all.deb" repo/
 ./update-index.sh
 ```
 

@@ -11,9 +11,12 @@ Vcs-Git: https://github.com/nodejs/corepack.git
 Vcs-Browser: https://github.com/nodejs/corepack
 Rules-Requires-Root: no
 
-Package: corepack
+Package: node-corepack
 Architecture: all
 Depends: nodejs (>= 22)
+Conflicts: corepack
+Replaces: corepack
+Provides: corepack
 Description: package manager manager for Node.js projects (Yarn, pnpm)
  Corepack is a zero-runtime-dependency Node.js script that acts as a
  bridge between Node.js projects and the package managers they are

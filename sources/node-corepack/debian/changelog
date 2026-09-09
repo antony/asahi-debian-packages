@@ -1,3 +1,12 @@
+node-corepack (0.36.0+ds-2) unstable; urgency=medium
+
+  * Rename the binary package from corepack to node-corepack, so it
+    cannot clash with the corepack package in the Debian archive.
+    Conflicts/Replaces/Provides: corepack, since it ships the same
+    files (/usr/bin/corepack and /usr/share/nodejs/corepack).
+
+ -- Antony <antony@beyonk.com>  Wed, 09 Sep 2026 13:14:41 +0000
+
 node-corepack (0.36.0+ds-1) unstable; urgency=medium
 
   * New upstream release 0.36.0.

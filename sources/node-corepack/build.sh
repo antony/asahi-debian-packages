@@ -19,7 +19,7 @@ dpkg-source --no-check -x node-corepack_*.dsc build/src
 (cd build/src && dpkg-buildpackage -b -us -uc -d)
 
 cd build
-DEB=$(ls corepack_*_all.deb)
+DEB=$(ls node-corepack_*_all.deb)
 
 # --- smoke tests -----------------------------------------------------
 rm -rf extract cphome

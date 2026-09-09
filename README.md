@@ -10,7 +10,7 @@ All packages here are `Architecture: all`, so they work on arm64
 
 | Package | Version | Source | Notes |
 |---|---|---|---|
-| `corepack` | 0.36.0+ds-1 | `sources/node-corepack/` | Debian-style repack of upstream [nodejs/corepack](https://github.com/nodejs/corepack); depends on `nodejs (>= 22)` |
+| `node-corepack` | 0.36.0+ds-2 | `sources/node-corepack/` | Debian-style repack of upstream [nodejs/corepack](https://github.com/nodejs/corepack); depends on `nodejs (>= 22)` |
 
 ## Using the repo on your machine
 
@@ -28,7 +28,7 @@ In another terminal:
 echo 'deb [trusted=yes] http://127.0.0.1:8321 ./' \
   | sudo tee /etc/apt/sources.list.d/asahi-local.list
 sudo apt update
-sudo apt install corepack
+sudo apt install node-corepack
 ```
 
 ### Without the HTTP server
@@ -39,7 +39,7 @@ apt can read the repo straight off the filesystem, no server needed:
 echo "deb [trusted=yes] file:$(pwd)/repo ./" \
   | sudo tee /etc/apt/sources.list.d/asahi-local.list
 sudo apt update
-sudo apt install corepack
+sudo apt install node-corepack
 ```
 
 ### A note on `[trusted=yes]`
