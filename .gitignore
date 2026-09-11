@@ -1,1 +1,4 @@
 sources/*/build/
+sources/*/dl/
+# ~90 MB per version, would bloat git history; rebuild with sources/obsidian/build.sh
+repo/obsidian_*.deb

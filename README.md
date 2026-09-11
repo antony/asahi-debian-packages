@@ -3,14 +3,15 @@
 A small, self-contained apt repository of Debian packages built locally
 for my Asahi Linux machine, plus everything needed to rebuild them.
 
-All packages here are `Architecture: all`, so they work on arm64
-(Asahi) and any other Debian architecture.
+Packages are either `Architecture: all` (work anywhere) or `arm64`
+repacks of upstream binaries that only ship a .deb for amd64.
 
 ## Packages
 
 | Package | Version | Source | Notes |
 |---|---|---|---|
-| `node-corepack` | 0.36.0+ds-2 | `sources/node-corepack/` | Debian-style repack of upstream [nodejs/corepack](https://github.com/nodejs/corepack); depends on `nodejs (>= 22)` |
+| `node-corepack` | 0.36.0+ds-2 | `sources/node-corepack/` | `all`. Debian-style repack of upstream [nodejs/corepack](https://github.com/nodejs/corepack); depends on `nodejs (>= 22)` |
+| `obsidian` | 1.13.7 | `sources/obsidian/` | `arm64`. Upstream [Obsidian](https://github.com/obsidianmd/obsidian-releases) only ships an amd64 .deb; this repacks their official arm64 tarball into a .deb with the same layout and scripts. **Not in git** (~90 MB) - run `./sources/obsidian/build.sh` after cloning |
 
 ## Using the repo on your machine
 
@@ -73,11 +74,26 @@ To rebuild what's already here:
 
 ```sh
 ./sources/node-corepack/build.sh
+./sources/obsidian/build.sh        # required after a fresh clone, see below
 ```
 
-To update to a new upstream release, follow
-`sources/node-corepack/UPDATING.md`, then commit the refreshed source
-package, the new .deb and the regenerated index files.
+Large binary repacks (currently `obsidian`) are gitignored under
+`repo/` because GitHub rejects files over 100 MB and each version would
+bloat history. Their `build.sh` downloads the upstream release,
+checksum-verifies it, builds the .deb, and reindexes.
+
+To update to a new upstream release, follow the package's
+`UPDATING.md`, then commit the refreshed sources and the regenerated
+index files (plus the .deb, for the small `all` packages).
+
+## Adding a new package
+
+In Claude Code, type `add <package or URL>` - the `add` skill in
+`.claude/skills/add/` walks through the same steps used for the existing
+packages: pick the cheapest route (upstream arm64 .deb, upstream arm64
+binary repack, `Architecture: all` repack, or build from source), create
+`sources/<name>/` with `build.sh` and `UPDATING.md`, build, smoke test,
+reindex, update this table.
 
 Build requirements: `dpkg-dev`, `nodejs (>= 22)`, `npm`, and network
 access to registry.npmjs.org. No debhelper needed - the packaging uses

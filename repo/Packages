@@ -26,3 +26,26 @@ Description: package manager manager for Node.js projects (Yarn, pnpm)
  This package installs the corepack command; run "corepack enable"
  to expose the yarn/pnpm shims it manages.
 
+Package: obsidian
+Version: 1.13.7
+Architecture: arm64
+Maintainer: antony <antony@beyonk.com>
+Installed-Size: 344584
+Depends: libgtk-3-0, libnotify4, libnss3, libxss1, libxtst6, xdg-utils, libatspi2.0-0, libuuid1, libsecret-1-0
+Recommends: libappindicator3-1
+Filename: ./obsidian_1.13.7_arm64.deb
+Size: 90878572
+MD5sum: 6447341cc0614db40f6f172f07ae73be
+SHA1: 6ae3ee1d37081e3118048259776dc2fed0343d37
+SHA256: da4023d5a52e277f73af8090cf15c43176e84c410509750e1d78c1d86ebf7cb1
+Section: editors
+Priority: optional
+Homepage: https://obsidian.md
+Description: Obsidian - private and flexible note-taking app (arm64 repack)
+ Obsidian is a Markdown note-taking and knowledge-base application built
+ on Electron.
+ .
+ Upstream only publishes an amd64 .deb. This package repacks the official
+ arm64 Linux tarball from the same release into a .deb with the same
+ layout, scripts, desktop entry and icons as upstream's amd64 package.
+

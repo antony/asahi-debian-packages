@@ -1,0 +1,17 @@
+Package: obsidian
+Version: @VERSION@
+Architecture: arm64
+Maintainer: @MAINTAINER@
+Installed-Size: @INSTALLED_SIZE@
+Depends: libgtk-3-0, libnotify4, libnss3, libxss1, libxtst6, xdg-utils, libatspi2.0-0, libuuid1, libsecret-1-0
+Recommends: libappindicator3-1
+Section: editors
+Priority: optional
+Homepage: https://obsidian.md
+Description: Obsidian - private and flexible note-taking app (arm64 repack)
+ Obsidian is a Markdown note-taking and knowledge-base application built
+ on Electron.
+ .
+ Upstream only publishes an amd64 .deb. This package repacks the official
+ arm64 Linux tarball from the same release into a .deb with the same
+ layout, scripts, desktop entry and icons as upstream's amd64 package.
