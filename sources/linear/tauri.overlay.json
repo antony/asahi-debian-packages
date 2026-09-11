@@ -1,0 +1,14 @@
+{
+  "bundle": {
+    "publisher": "antony <antony@beyonk.com>",
+    "homepage": "https://github.com/zacharyftw/linear-linux",
+    "category": "Productivity",
+    "shortDescription": "Linux desktop client for linear.app (arm64 build)",
+    "longDescription": "Linear for Linux is a small Tauri v2 desktop wrapper around https://linear.app, built by zacharyftw/linear-linux. Upstream only publishes an amd64 .deb; this package is the same source built for arm64.",
+    "linux": {
+      "deb": {
+        "section": "net"
+      }
+    }
+  }
+}

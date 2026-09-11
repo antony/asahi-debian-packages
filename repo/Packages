@@ -1,3 +1,20 @@
+Package: linear
+Version: 0.2.3
+Architecture: arm64
+Maintainer: antony <antony@beyonk.com>
+Installed-Size: 11292
+Depends: libwebkit2gtk-4.1-0, libgtk-3-0
+Filename: ./linear_0.2.3_arm64.deb
+Size: 3715592
+MD5sum: cbd0fa05da0c0eebc86b5f68513af670
+SHA1: 91126b20b0c755e920685c3cfdd480dad4f77b95
+SHA256: 95889e608215a418f71f50447ccaa18791e8addeb68bd95b19817e3adb651cb9
+Section: net
+Priority: optional
+Homepage: https://github.com/zacharyftw/linear-linux
+Description: Linux desktop client for linear.app (arm64 build)
+ Linear for Linux is a small Tauri v2 desktop wrapper around https://linear.app, built by zacharyftw/linear-linux. Upstream only publishes an amd64 .deb; this package is the same source built for arm64.
+
 Package: node-corepack
 Version: 0.36.0+ds-2
 Architecture: all

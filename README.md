@@ -12,6 +12,7 @@ repacks of upstream binaries that only ship a .deb for amd64.
 |---|---|---|---|
 | `node-corepack` | 0.36.0+ds-2 | `sources/node-corepack/` | `all`. Debian-style repack of upstream [nodejs/corepack](https://github.com/nodejs/corepack); depends on `nodejs (>= 22)` |
 | `obsidian` | 1.13.7 | `sources/obsidian/` | `arm64`. Upstream [Obsidian](https://github.com/obsidianmd/obsidian-releases) only ships an amd64 .deb; this repacks their official arm64 tarball into a .deb with the same layout and scripts. **Not in git** (~90 MB) - run `./sources/obsidian/build.sh` after cloning |
+| `linear` | 0.2.3 | `sources/linear/` | `arm64`. [Linear for Linux](https://github.com/zacharyftw/linear-linux), a Tauri wrapper around linear.app. Upstream only releases amd64; this is the same source built for arm64. Needs Rust and the WebKitGTK dev libs to rebuild |
 
 ## Using the repo on your machine
 

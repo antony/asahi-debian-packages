@@ -35,8 +35,10 @@ name is ambiguous or the licence forbids redistribution.
 3. **Pure script / JS / arch-independent** - `Architecture: all`
    Debian-style source package. Template: `sources/node-corepack/`.
 4. **Only source available** - build it. Prefer upstream's own build
-   instructions over inventing debhelper rules. Budget: if it needs a
-   toolchain the machine lacks, say so before installing anything.
+   instructions over inventing debhelper rules. Template: `sources/linear/`
+   (Tauri v2 app). Pin the tag AND the commit it resolves to. If it needs
+   `sudo apt install` of dev libraries, the user must run that in their
+   own terminal (sudo has no tty here); Rust lives in `~/.cargo/bin`.
 
 If the only arm64 artefact is an AppImage, extract it
 (`./Foo.AppImage --appimage-extract`) and treat `squashfs-root/` as the
@@ -100,3 +102,12 @@ at 100 MB and every version bump adds the full size to history.
   `resources/app.asar.unpacked/`; app works anyway. Not fixable in a repack.
 - Obsidian's tarball lacks `resources/apparmor-profile`; the amd64 .deb has
   it and postinst expects it - copy it in.
+- Tauri apps: get the CLI with `corepack npm@11 install` inside the clone
+  (prebuilt arm64, seconds) rather than `cargo install tauri-cli` (long
+  compile). Build with `--bundles deb` only (AppImage needs patchelf +
+  downloads). Fix thin .deb metadata (Maintainer/Description/Categories)
+  with a `--config overlay.json`, never by patching upstream. Keep
+  `CARGO_TARGET_DIR` under `build/target`, and never move a target dir
+  in from elsewhere - Tauri bakes absolute paths into build-script outputs.
+- Tauri names the .deb after `productName` (`Linear_...`); rename to the
+  lowercase package name for the repo.
