@@ -1,0 +1,21 @@
+Package: librepods
+Version: @VERSION@
+Architecture: arm64
+Maintainer: @MAINTAINER@
+Installed-Size: @INSTALLED_SIZE@
+Depends: @SHLIBS_DEPENDS@, bluez
+Recommends: libwayland-client0 | libx11-6, libxkbcommon0, libvulkan1, mesa-vulkan-drivers
+Section: utils
+Priority: optional
+Homepage: https://github.com/librepods-org/librepods
+Description: control AirPods from Linux - battery, noise control, ear detection
+ LibrePods talks to AirPods over BlueZ and exposes the features that are
+ otherwise only available from Apple devices: battery levels for each pod
+ and the case, noise control modes (off, transparency, adaptive, noise
+ cancellation), conversational awareness, automatic play/pause on ear
+ detection and hearing aid settings. It runs as a system tray application
+ with a small window for details and settings.
+ .
+ This is upstream's Rust rewrite (the linux-rust tree, released as tag
+ linux-v0.1.0) built from source for arm64. Upstream only publishes an
+ x86_64 AppImage and binary.

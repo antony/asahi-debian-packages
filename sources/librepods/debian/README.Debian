@@ -1,0 +1,20 @@
+librepods for Debian/Ubuntu on arm64
+====================================
+
+This is upstream's Rust/iced rewrite of the LibrePods Linux client, built
+from the linux-rust directory at tag linux-v0.1.0. It needs a running
+BlueZ (bluetooth.service) and a desktop with a StatusNotifier tray host;
+on GNOME that means an AppIndicator/KStatusNotifierItem extension.
+
+Command line flags (see `librepods --help`):
+
+  --debug            verbose logging (or set RUST_LOG)
+  --no-tray          do not create the tray icon
+  --start-minimized  start without opening the window
+
+Per-user state lives in ~/.local/share/librepods/devices.json and
+~/.config/librepods/{preferences,app_settings}.json (XDG_* respected).
+
+Known upstream quirk in 0.1.0: the window icon is loaded from a path
+relative to the source tree, so the running window has no icon when
+installed. The launcher icon and tray icon are unaffected.

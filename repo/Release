@@ -3,14 +3,14 @@ Label: asahi-debian-packages
 Suite: local
 Codename: local
 Architectures: all arm64 amd64
-Date: Mon, 14 Sep 2026 08:30:19 +0000
+Date: Mon, 14 Sep 2026 10:00:57 +0000
 Description: Locally built Debian packages
 MD5Sum:
- edd3251f955c1da1ce5378d85092d45e 3999 Packages
- 1e70f69124a38d53cffacafef7f50451 1942 Packages.gz
+ 79863b9c3c0e9fe0f2169bcbf17329bf 5266 Packages
+ 19970e622b833b57971791ffe09ac4bc 2483 Packages.gz
 SHA1:
- 2694b5e95e3fe65d3c10666ad55fde207751b6fc 3999 Packages
- 5b759bfe6c72c8198415448a56fc4544ff016def 1942 Packages.gz
+ 15d8e55acc297c2c4e25556322f149feda99e047 5266 Packages
+ ed693cd9e6af0e7d679301c22516edb1933ce16c 2483 Packages.gz
 SHA256:
- a2f94ff29fffde9bc9ce4595f9bea78ae62557cb7292b08a3ea9d8be64ca6773 3999 Packages
- ac73172e018ad5411fe6dea4d23923ad21e51867042625be5f24e041f58b6e28 1942 Packages.gz
+ 783817a091db13e43e4c31954bf8388b6b4b7b58c01aeba653cd7f1030f89602 5266 Packages
+ ce774a989051da7a334c70c957d68e79dde5ae2a814aca365128090e14a929aa 2483 Packages.gz

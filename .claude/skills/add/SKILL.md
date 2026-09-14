@@ -111,3 +111,14 @@ at 100 MB and every version bump adds the full size to history.
   in from elsewhere - Tauri bakes absolute paths into build-script outputs.
 - Tauri names the .deb after `productName` (`Linear_...`); rename to the
   lowercase package name for the repo.
+- LibrePods (librepods-org/librepods) is a monorepo: `/releases/latest` is
+  always the Android APK build. The Linux client is tagged separately as
+  `linux-v*` and lives in `linux-rust/` (Rust/iced); `linux/` is the old
+  Qt client. Only x86_64 artefacts are released, so build from the tag.
+- Rust crates using `libpulse-sys` link fine without `libpulse-dev`: the
+  crate's build.rs falls back to `libpulse.so.0` by soname when pkg-config
+  fails. Don't add `-dev` build deps just because upstream CI installs
+  them; check what the build actually needs.
+- LibrePods 0.1.0 loads its window icon from `../../assets/icon.png`
+  relative to the source tree, so the installed window has no icon.
+  Upstream bug, not fixable in packaging; documented in README.Debian.
