@@ -1,0 +1,23 @@
+Package: obn
+Version: @VERSION@
+Architecture: arm64
+Maintainer: @MAINTAINER@
+Installed-Size: @INSTALLED_SIZE@
+Depends: libc6, libstdc++6, libgcc-s1, libssl3t64 | libssl3, libcurl4t64 | libcurl4
+Recommends: python3
+Section: utils
+Priority: optional
+Homepage: https://github.com/ClusterM/open-bamboo-networking
+Description: open-bamboo-networking - open-source Bambu Studio network plugin
+ Drop-in, open-source replacement for the proprietary bambu_networking
+ plugin that Bambu Studio and Orca Slicer download on first start. Same
+ C ABI and file names, so LAN printing, MQTT status, camera and cloud
+ login work without the closed binary.
+ .
+ This package stages upstream's Linux aarch64 release archive under
+ /usr/lib/obn, unmodified. The plugin itself lives in each user's slicer
+ config directory, so after installing run "obn-install" as your normal
+ user with the slicer closed; it runs upstream's installer, which detects
+ Bambu Studio (native or Flatpak) or Orca Slicer, picks the matching ABI
+ build, copies the libraries and patches the slicer conf exactly as the
+ upstream README describes.

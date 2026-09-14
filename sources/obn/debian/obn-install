@@ -1,0 +1,20 @@
+#!/bin/sh
+# obn-install - run upstream open-bamboo-networking's interactive installer
+# from the copy staged by the obn package.
+#
+# The plugin is loaded from the slicer's per-user config directory
+# (~/.config/BambuStudio/plugins, ~/.var/app/com.bambulab.BambuStudio/...,
+# ~/.config/OrcaSlicer/plugins), so this must run as the user who runs the
+# slicer, with the slicer closed. It is the "chmod +x install.sh &&
+# ./install.sh" step from upstream's README, nothing more.
+set -eu
+OBN_DIR="${OBN_DIR:-/usr/lib/obn}"
+
+if [ "$(id -u)" -eq 0 ] && [ -z "${OBN_ALLOW_ROOT:-}" ]; then
+    echo "obn-install: run this as the user who runs Bambu Studio / Orca Slicer, not as root." >&2
+    echo "obn-install: it installs into that user's slicer config directory, not system-wide." >&2
+    echo "obn-install: (set OBN_ALLOW_ROOT=1 if root really is that user)" >&2
+    exit 1
+fi
+
+exec "$OBN_DIR/install.sh" "$@"

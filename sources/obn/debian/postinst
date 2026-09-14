@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+# Fresh install only (not on upgrades): tell the user about the per-user step.
+if [ "$1" = configure ] && [ -z "${2:-}" ]; then
+    echo "obn: plugin files are staged in /usr/lib/obn."
+    echo "obn: close Bambu Studio / Orca Slicer, then run 'obn-install' as your normal user"
+    echo "obn: to install the plugin into that slicer's config directory."
+fi

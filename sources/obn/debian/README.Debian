@@ -1,0 +1,39 @@
+obn for Debian/Ubuntu (arm64)
+=============================
+
+This package does not put the plugin where the slicer looks for it. It
+can't: Bambu Studio and Orca Slicer load network plugins from the user's
+own config directory, not from a system path.
+
+What the package installs:
+
+  /usr/lib/obn/            upstream's obn-linux-aarch64 release archive,
+                           unmodified (install.sh, lib/vXX.XX.XX/*.so,
+                           network_plugins.json per ABI, VERSION, README.txt)
+  /usr/bin/obn-install     runs /usr/lib/obn/install.sh as you
+
+What you do once per user, with the slicer closed:
+
+  obn-install
+
+That is upstream's documented install step. It asks which slicer, finds
+its config dir (native ~/.config/BambuStudio, Flatpak
+~/.var/app/com.bambulab.BambuStudio/config/BambuStudio, Bambu Studio Beta,
+or Orca Slicer), reads the slicer version, picks the matching ABI build
+from /usr/lib/obn/lib/, copies libbambu_networking.so and
+libBambuSource.so into <config>/plugins/, installs ota/plugins/
+network_plugins.json (Bambu Studio) and patches the slicer conf so it
+stops re-downloading the stock plugin. It backs the conf up to
+<conf>.obn-bak. Then start the slicer.
+
+After upgrading this package, run obn-install again so the copy in your
+config directory is updated too. If your slicer version is newer than
+any lib/vXX.XX.XX/ directory in /usr/lib/obn, you need a newer upstream
+release; see sources/obn/UPDATING.md in the asahi-debian-packages repo.
+
+To go back to the stock plugin: delete <config>/plugins/libbambu_networking.so
+and libBambuSource.so, restore <conf>.obn-bak, start the slicer and let it
+download the plugin again.
+
+Runtime settings live in <config>/obn.conf (created on first launch).
+See upstream's README: https://github.com/ClusterM/open-bamboo-networking
