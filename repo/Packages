@@ -42,6 +42,32 @@ Homepage: https://github.com/zacharyftw/linear-linux
 Description: Linux desktop client for linear.app (arm64 build)
  Linear for Linux is a small Tauri v2 desktop wrapper around https://linear.app, built by zacharyftw/linear-linux. Upstream only publishes an amd64 .deb; this package is the same source built for arm64.
 
+Package: mongodb-compass
+Version: 1.50.0
+Architecture: arm64
+Maintainer: antony <antony@beyonk.com>
+Installed-Size: 496860
+Depends: libgtk-3-0, libnotify4, libnss3, libxtst6, xdg-utils, libatspi2.0-0, libdrm2, libgbm1, libxcb-dri3-0, kde-cli-tools | kde-runtime | trash-cli | libglib2.0-bin | gvfs-bin, libsecret-1-0, gnome-keyring
+Recommends: pulseaudio | libasound2
+Suggests: gir1.2-gnomekeyring-1.0, libgnome-keyring0, lsb-release
+Filename: ./mongodb-compass_1.50.0_arm64.deb
+Size: 120769152
+MD5sum: 68d16197d2c35ad5ee12d9b64099f9e1
+SHA1: 4e7bae06a1e020780c6d753278df77207a4a5ff9
+SHA256: a8be1981d3d845246fa2c656f3a8ec7d878c2475d199e8686bbb21f99454eb3c
+Section: database
+Priority: optional
+Homepage: https://www.mongodb.com/products/compass
+Description: The MongoDB GUI (arm64 build from source)
+ MongoDB Compass is the official graphical client for MongoDB: browse
+ and edit documents, build queries and aggregations, inspect indexes
+ and schema, and run an embedded mongosh.
+ .
+ Upstream only publishes Linux builds for x86-64. This package is the
+ same release (tag v1.50.0) built for arm64 on Asahi Linux with
+ upstream's own build pipeline (hadron-build), with the .deb assembled
+ to match the layout and dependencies of upstream's amd64 package.
+
 Package: node-corepack
 Version: 0.36.0+ds-2
 Architecture: all

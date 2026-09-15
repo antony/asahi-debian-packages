@@ -15,6 +15,7 @@ repacks of upstream binaries that only ship a .deb for amd64.
 | `linear` | 0.2.3 | `sources/linear/` | `arm64`. [Linear for Linux](https://github.com/zacharyftw/linear-linux), a Tauri wrapper around linear.app. Upstream only releases amd64; this is the same source built for arm64. Needs Rust and the WebKitGTK dev libs to rebuild |
 | `obn` | 2.1.0 | `sources/obn/` | `arm64`. [open-bamboo-networking](https://github.com/ClusterM/open-bamboo-networking), open-source replacement for Bambu Studio's / Orca Slicer's proprietary network plugin. Upstream ships only a tarball with a per-user `install.sh`; this stages it in `/usr/lib/obn` and adds `obn-install` to run that installer as your user. Committed (~1.5 MB) |
 | `librepods` | 0.1.0 | `sources/librepods/` | `arm64`. [LibrePods](https://github.com/librepods-org/librepods) Linux client (the Rust/iced rewrite in `linux-rust/`, tag `linux-v0.1.0`): AirPods battery, noise control, ear detection from a tray app. Upstream only ships an x86_64 AppImage; this is the same source built for arm64. Needs Rust plus `libdbus-1-dev`. Committed (~4 MB) |
+| `mongodb-compass` | 1.50.0 | `sources/mongodb-compass/` | `arm64`. [MongoDB Compass](https://github.com/mongodb-js/compass), the MongoDB GUI. Upstream only ships Linux builds for x86-64; this is the same tag built for arm64 with upstream's own hadron-build pipeline, with the .deb assembled to match the amd64 one. Needs `libkrb5-dev` and downloads Node 24 into `build/`. **Not in git** (~130 MB) - run `./sources/mongodb-compass/build.sh` after cloning |
 
 ## Using the repo on your machine
 
@@ -78,9 +79,10 @@ To rebuild what's already here:
 ```sh
 ./sources/node-corepack/build.sh
 ./sources/obsidian/build.sh        # required after a fresh clone, see below
+./sources/mongodb-compass/build.sh # likewise; long first build
 ```
 
-Large binary repacks (currently `obsidian`) are gitignored under
+Large packages (currently `obsidian` and `mongodb-compass`) are gitignored under
 `repo/` because GitHub rejects files over 100 MB and each version would
 bloat history. Their `build.sh` downloads the upstream release,
 checksum-verifies it, builds the .deb, and reindexes.

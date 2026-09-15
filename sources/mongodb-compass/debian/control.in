@@ -1,0 +1,20 @@
+Package: mongodb-compass
+Version: @VERSION@
+Architecture: arm64
+Maintainer: @MAINTAINER@
+Installed-Size: @INSTALLED_SIZE@
+Depends: libgtk-3-0, libnotify4, libnss3, libxtst6, xdg-utils, libatspi2.0-0, libdrm2, libgbm1, libxcb-dri3-0, kde-cli-tools | kde-runtime | trash-cli | libglib2.0-bin | gvfs-bin, libsecret-1-0, gnome-keyring
+Recommends: pulseaudio | libasound2
+Suggests: gir1.2-gnomekeyring-1.0, libgnome-keyring0, lsb-release
+Section: database
+Priority: optional
+Homepage: https://www.mongodb.com/products/compass
+Description: The MongoDB GUI (arm64 build from source)
+ MongoDB Compass is the official graphical client for MongoDB: browse
+ and edit documents, build queries and aggregations, inspect indexes
+ and schema, and run an embedded mongosh.
+ .
+ Upstream only publishes Linux builds for x86-64. This package is the
+ same release (tag v@VERSION@) built for arm64 on Asahi Linux with
+ upstream's own build pipeline (hadron-build), with the .deb assembled
+ to match the layout and dependencies of upstream's amd64 package.

@@ -122,3 +122,16 @@ at 100 MB and every version bump adds the full size to history.
 - LibrePods 0.1.0 loads its window icon from `../../assets/icon.png`
   relative to the source tree, so the installed window has no icon.
   Upstream bug, not fixable in packaging; documented in README.Debian.
+- MongoDB Compass (mongodb-js/compass) has no Linux arm64 build at all;
+  it's a source build with upstream's `npm run bootstrap` +
+  `npm run package-compass`. Always set `HADRON_SKIP_INSTALLER=true`:
+  hadron-build's `target.ts` maps arch as `x64 ? amd64 : i386`, so its
+  .deb would be stamped i386 on arm64. Assemble the .deb yourself from
+  `packages/compass/dist/MongoDB Compass-linux-arm64/`. Needs Node >= 24
+  (engine-strict) - download a pinned nodejs.org tarball into build/ -
+  and `libkrb5-dev`, because upstream force-rebuilds native modules from
+  source on Linux. ~5.6 GB under build/, .deb ~120 MB (gitignored).
+- Electron apps abort with "SUID sandbox helper ... not configured
+  correctly" when run from an extracted tree because chrome-sandbox isn't
+  root-owned there. Not a packaging bug; use `--no-sandbox --version` to
+  check the binary loads.
