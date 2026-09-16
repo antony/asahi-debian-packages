@@ -1,0 +1,58 @@
+ComfyUI for Debian/Ubuntu (asahi-debian-packages)
+=================================================
+
+Upstream ships ComfyUI as a Python source tree you run inside a
+virtualenv; there is no Linux binary release and no arm64 build of the
+desktop app. This package stages the upstream tree, unmodified, in
+/usr/lib/comfyui and adds /usr/bin/comfyui.
+
+First run
+---------
+    comfyui
+
+creates ~/.local/share/comfyui/venv, installs the CPU build of PyTorch
+from https://download.pytorch.org/whl/cpu plus upstream's
+requirements.txt (about 1 GB of downloads, 2.5 GB on disk, several
+minutes), copies the
+models/ folder skeleton, custom_nodes/ and input/ into
+~/.local/share/comfyui, and starts the server on http://127.0.0.1:8188.
+Later runs skip the install. After a package upgrade the launcher sees
+the new version stamp and re-runs pip against the new requirements.txt.
+
+Arguments are passed to ComfyUI's main.py:
+
+    comfyui --auto-launch            open the browser when ready
+    comfyui --listen 0.0.0.0         serve on the LAN
+    comfyui --help                   everything else
+
+Where things live
+-----------------
+Everything user-owned is under ~/.local/share/comfyui (override with
+COMFYUI_HOME): models/, custom_nodes/, input/, output/, user/ (settings,
+workflows, comfyui.db, comfyui.log), temp/ and venv/. Put checkpoints in
+models/checkpoints/ and so on, exactly as in a git checkout.
+
+extra_model_paths.yaml: upstream reads it from the source directory,
+which is /usr/lib/comfyui here and root-owned. Use
+    comfyui --extra-model-paths-config ~/.local/share/comfyui/extra_model_paths.yaml
+instead.
+
+Custom nodes that need extra Python packages: install them into the
+venv, e.g.
+    ~/.local/share/comfyui/venv/bin/pip install -r ~/.local/share/comfyui/custom_nodes/<node>/requirements.txt
+ComfyUI-Manager can do this itself; it needs git (Recommends).
+
+Performance on Asahi Linux
+--------------------------
+PyTorch has no GPU backend for Apple Silicon under Linux (no CUDA, no
+MPS), so everything runs on the CPU. Expect minutes per SD1.5 image and
+much longer for SDXL/Flux. Use small models and low step counts. If you
+have a different accelerator, point COMFYUI_TORCH_INDEX at the matching
+PyTorch wheel index before the first run (or delete venv/ and rerun);
+the launcher then stops adding --cpu.
+
+Removing
+--------
+apt remove comfyui removes /usr/lib/comfyui and the launcher only.
+Your models, outputs and the venv stay in ~/.local/share/comfyui;
+delete that directory yourself if you want them gone.

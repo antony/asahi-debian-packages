@@ -135,3 +135,11 @@ at 100 MB and every version bump adds the full size to history.
   correctly" when run from an extracted tree because chrome-sandbox isn't
   root-owned there. Not a packaging bug; use `--no-sandbox --version` to
   check the binary loads.
+- ComfyUI (comfyanonymous/ComfyUI) ships no Linux binaries and the desktop
+  app has no Linux arm64 build; it's a Python tree needing ~2.5 GB of pip
+  deps (torch) that can't go in a .deb. Stage the source tarball as
+  `Architecture: all` with a launcher that builds a per-user venv on first
+  run (template: `sources/comfyui/`). Install torch from the CPU index
+  BEFORE `requirements.txt`, always pass `--cpu` with a CPU torch (ComfyUI
+  assumes CUDA otherwise), and seed `custom_nodes/` into the base dir or
+  startup crashes on `os.listdir`.

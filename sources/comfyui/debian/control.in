@@ -1,0 +1,25 @@
+Package: comfyui
+Version: @VERSION@
+Architecture: all
+Maintainer: @MAINTAINER@
+Installed-Size: @INSTALLED_SIZE@
+Depends: python3 (>= 3.12), python3-venv
+Recommends: git
+Section: graphics
+Priority: optional
+Homepage: https://github.com/comfyanonymous/ComfyUI
+Description: ComfyUI - node-based Stable Diffusion / generative AI UI
+ The most powerful and modular visual AI engine and application. Design
+ and execute image, video and audio generation pipelines as node graphs
+ in the browser.
+ .
+ This package stages the upstream source tree, unmodified, under
+ /usr/lib/comfyui and adds a "comfyui" launcher. Upstream distributes
+ ComfyUI as a Python project installed with pip into a virtualenv, and
+ its dependencies (PyTorch and friends, about 2.5 GB installed) are not in the
+ Ubuntu archive, so the launcher creates that virtualenv per user in
+ ~/.local/share/comfyui/venv on first run, installs the CPU build of
+ PyTorch plus upstream's requirements.txt, and runs ComfyUI with that
+ directory as its base for models, custom_nodes, input, output and user
+ data. On Apple Silicon under Linux there is no GPU backend for PyTorch,
+ so generation runs on the CPU and is slow.

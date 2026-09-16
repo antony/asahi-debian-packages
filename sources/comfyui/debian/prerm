@@ -1,0 +1,3 @@
+#!/bin/sh
+set -e
+find /usr/lib/comfyui -name __pycache__ -type d -prune -exec rm -rf {} +

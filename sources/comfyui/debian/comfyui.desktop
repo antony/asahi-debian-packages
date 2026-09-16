@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=ComfyUI
+Comment=Node-based Stable Diffusion / generative AI UI (opens in your browser)
+Exec=comfyui --auto-launch
+Terminal=true
+Categories=Graphics;
+Keywords=stable diffusion;ai;image generation;

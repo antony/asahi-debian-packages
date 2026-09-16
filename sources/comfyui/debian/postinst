@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+# Byte-compile the staged tree so each launch doesn't recompile ~900
+# files into a directory the user can't write to. Same interpreter the
+# launcher's venv uses (/usr/bin/python3).
+python3 -m compileall -q /usr/lib/comfyui || true
