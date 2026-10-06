@@ -4,3 +4,5 @@ sources/*/dl/
 repo/obsidian_*.deb
 # ~130 MB per version, would bloat git history; rebuild with sources/mongodb-compass/build.sh
 repo/mongodb-compass_*.deb
+# ~200 MB per version, would bloat git history; rebuild with sources/bambustudio-beta/build.sh
+repo/bambustudio-beta_*.deb

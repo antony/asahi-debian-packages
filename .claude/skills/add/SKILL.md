@@ -25,8 +25,8 @@ name is ambiguous or the licence forbids redistribution.
 
 ## 2. Pick the cheapest route, in this order
 
-1. **Upstream ships an arm64 .deb** - just fetch it, verify checksum,
-   drop into `repo/`, write a tiny `build.sh` that does that. Done.
+1. **Upstream ships an arm64 .deb** - don't package it. Tell the user
+   the direct download link and stop, same as the apt-cache check above.
 2. **Upstream ships an arm64 tarball/binary but only an amd64 .deb**
    (Electron apps, Go/Rust CLIs) - repack the arm64 tarball into a .deb
    mirroring the amd64 one. Template: `sources/obsidian/`. Download the

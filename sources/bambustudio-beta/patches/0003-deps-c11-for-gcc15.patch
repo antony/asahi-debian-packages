@@ -1,0 +1,12 @@
+diff --git a/deps/deps-linux.cmake b/deps/deps-linux.cmake
+index fbe7b71..ef42169 100644
+--- a/deps/deps-linux.cmake
++++ b/deps/deps-linux.cmake
+@@ -1,5 +1,6 @@
+ 
+-set(DEP_CMAKE_OPTS "-DCMAKE_POSITION_INDEPENDENT_CODE=ON")
++# GCC 15 defaults to C23, where `typedef _Bool bool` (c-blosc shuffle.c) is an error.
++set(DEP_CMAKE_OPTS "-DCMAKE_POSITION_INDEPENDENT_CODE=ON" "-DCMAKE_C_STANDARD=11")
+ 
+ include("deps-unix-common.cmake")
+ 

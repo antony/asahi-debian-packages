@@ -1,0 +1,14 @@
+diff --git a/deps/OpenMeshCraft/OpenMeshCraft.cmake b/deps/OpenMeshCraft/OpenMeshCraft.cmake
+index 6779262..f025978 100644
+--- a/deps/OpenMeshCraft/OpenMeshCraft.cmake
++++ b/deps/OpenMeshCraft/OpenMeshCraft.cmake
+@@ -240,7 +240,8 @@ if(MPFR_PKG)
+ endif()
+ 
+ set(_OMC_SIMD_ARGS "")
+-if(APPLE)
++# -msse2/-mavx/-mavx2/-mfma are x86-only; OMC defaults them ON except on Apple.
++if(APPLE OR NOT CMAKE_SYSTEM_PROCESSOR MATCHES "x86_64|AMD64")
+   set(_OMC_SIMD_ARGS
+     -DOMC_CMAKE_ENABLE_SSE2=OFF
+     -DOMC_CMAKE_ENABLE_AVX=OFF
