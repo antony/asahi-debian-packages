@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Epos Now Till
+Comment=Epos Now web till (Electron 25, keeps WebSQL)
+Exec=/opt/eposnow-till/eposnow-till %U
+Terminal=false
+Type=Application
+Icon=eposnow-till
+StartupWMClass=eposnow-till
+Categories=Office;Finance;

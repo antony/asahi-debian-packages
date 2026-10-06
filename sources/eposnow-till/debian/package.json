@@ -1,0 +1,5 @@
+{
+  "name": "eposnow-till",
+  "version": "@VERSION@",
+  "main": "main.js"
+}

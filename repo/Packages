@@ -1,3 +1,23 @@
+Package: bambustudio-beta
+Version: 02.08.03.66
+Architecture: arm64
+Maintainer: Antony <antony@users.noreply.github.com>
+Installed-Size: 555988
+Depends: libc6 (>= 2.43), libcairo2 (>= 1.12.0), libdbus-1-3 (>= 1.10), libfontconfig1 (>= 2.12.6), libgcc-s1 (>= 4.5), libgdk-pixbuf-2.0-0 (>= 2.22.0), libgl1, libglib2.0-0t64 (>= 2.80.0), libgstreamer-plugins-base1.0-0 (>= 1.0.0), libgstreamer1.0-0 (>= 1.8.0), libgtk-3-0t64 (>= 3.19.12), libjavascriptcoregtk-4.1-0, libpango-1.0-0 (>= 1.22.0), libpangocairo-1.0-0 (>= 1.14.0), libpangoft2-1.0-0 (>= 1.37.2), libstdc++6 (>= 14), libwayland-client0 (>= 1.20.0), libwayland-server0 (>= 1.3.92), libwebkit2gtk-4.1-0 (>= 2.39.90), libx11-6, libzstd1 (>= 1.5.5), zlib1g (>= 1:1.2.11)
+Recommends: gstreamer1.0-plugins-good, gstreamer1.0-plugins-bad, gstreamer1.0-libav
+Conflicts: bambustudio
+Filename: ./bambustudio-beta_02.08.03.66_arm64.deb
+Size: 211482032
+MD5sum: b079cabeb1fbd4f36286616deee0a3e2
+SHA1: 76a012c773058a8cf751d76e910ed12c1785f9a2
+SHA256: f4f70b1d325c85f0b2caf31c8e9d67fb82337620c848a3abd87b1f3d0ae0a153
+Section: graphics
+Priority: optional
+Homepage: https://github.com/bambulab/BambuStudio
+Description: Bambu Studio 3D printing slicer (pre-release channel)
+ Bambu Lab's slicer and printer front end, built from the upstream
+ pre-release tag for arm64. Upstream only publishes x86_64 AppImages.
+
 Package: comfyui
 Version: 0.36.0
 Architecture: all
@@ -28,6 +48,29 @@ Description: ComfyUI - node-based Stable Diffusion / generative AI UI
  directory as its base for models, custom_nodes, input, output and user
  data. On Apple Silicon under Linux there is no GPU backend for PyTorch,
  so generation runs on the CPU and is slow.
+
+Package: eposnow-till
+Version: 1.0.1
+Architecture: arm64
+Maintainer: antony <antony@beyonk.com>
+Installed-Size: 245044
+Depends: libgtk-3-0, libnotify4, libnss3, libxss1, libxtst6, xdg-utils, libatspi2.0-0, libuuid1, libsecret-1-0
+Filename: ./eposnow-till_1.0.1_arm64.deb
+Size: 65434176
+MD5sum: e5f49c942817aa0dd12c232d9f48738d
+SHA1: cf6dcec2fa997bdd39f11958f8d775e9629b2762
+SHA256: 4b99ba923d7eb39f1bf4066d1a7ad43f809538b3308fc0667ebbe5f992e1b221
+Section: misc
+Priority: optional
+Homepage: https://www.eposnow.com
+Description: Epos Now web till in a pinned Electron (arm64)
+ Desktop window for the Epos Now web till (www.eposnowhq.com), the same
+ thing Epos Now's Mac app does: Electron 25 / Chromium 114, which still
+ supports WebSQL (removed from Chrome 119).
+ .
+ Built from the official Electron arm64 release plus a small rewritten
+ launcher script. Contains no Epos Now code. Electron 25 is end-of-life,
+ so this only loads the Epos Now site.
 
 Package: librepods
 Version: 0.1.0

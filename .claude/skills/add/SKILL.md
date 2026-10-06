@@ -143,3 +143,11 @@ at 100 MB and every version bump adds the full size to history.
   BEFORE `requirements.txt`, always pass `--cpu` with a CPU torch (ComfyUI
   assumes CUDA otherwise), and seed `custom_nodes/` into the base dir or
   startup crashes on `os.listdir`.
+- Electron apps that are only a `loadURL()` wrapper (check `app.asar`'s
+  main script first, e.g. Epos Now's Mac till): don't repack their asar.
+  Ship the official Electron arm64 zip plus a rewritten `resources/app/`
+  (template: `sources/eposnow-till/`). With `default_app.asar` removed,
+  `--version` launches the app; smoke test with
+  `ELECTRON_RUN_AS_NODE=1 <bin> -p process.versions.electron`.
+- Tauri is not a drop-in for Electron wrappers that need WebSQL:
+  WebKitGTK 2.52 has no `openDatabase`.

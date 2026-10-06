@@ -6,3 +6,5 @@ repo/obsidian_*.deb
 repo/mongodb-compass_*.deb
 # ~200 MB per version, would bloat git history; rebuild with sources/bambustudio-beta/build.sh
 repo/bambustudio-beta_*.deb
+# ~65 MB per version, would bloat git history; rebuild with sources/eposnow-till/build.sh
+repo/eposnow-till_*.deb
