@@ -1,0 +1,20 @@
+Package: qphotorec
+Version: @VERSION@
+Architecture: arm64
+Maintainer: @MAINTAINER@
+Installed-Size: @INSTALLED_SIZE@
+Depends: @SHLIBS_DEPENDS@
+Recommends: testdisk
+Section: admin
+Priority: optional
+Homepage: https://www.cgsecurity.org/wiki/PhotoRec
+Description: graphical file recovery tool (Qt front end to PhotoRec)
+ QPhotoRec is the Qt GUI for PhotoRec, the file carver from the TestDisk
+ project. It recovers lost files (photos, video, documents, archives and
+ several hundred other formats) from hard disks, memory cards, USB sticks
+ and disk images by reading the raw data, ignoring the filesystem.
+ .
+ Ubuntu's testdisk package ships testdisk, photorec and fidentify but is
+ built without Qt, so it has no qphotorec. This package is upstream
+ testdisk-7.2 built for arm64 and contains only qphotorec, its man page,
+ desktop file and icons. Run it as root (sudo -E qphotorec) to see disks.

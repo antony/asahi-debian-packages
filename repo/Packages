@@ -222,3 +222,29 @@ Description: Obsidian - private and flexible note-taking app (arm64 repack)
  arm64 Linux tarball from the same release into a .deb with the same
  layout, scripts, desktop entry and icons as upstream's amd64 package.
 
+Package: qphotorec
+Version: 7.2
+Architecture: arm64
+Maintainer: antony <antony@beyonk.com>
+Installed-Size: 900
+Depends: libc6 (>= 2.38), libewf2 (>= 20121209), libext2fs2t64 (>= 1.41.0), libgcc-s1 (>= 3.0), libjpeg8 (>= 8c), libntfs-3g89t64, libqt5core5t64 (>= 5.3.0), libqt5gui5t64 (>= 5.6.0~beta) | libqt5gui5-gles (>= 5.6.0~beta), libqt5widgets5t64 (>= 5.0.2), libstdc++6 (>= 5.2), zlib1g (>= 1:1.1.4)
+Recommends: testdisk
+Filename: ./qphotorec_7.2_arm64.deb
+Size: 250236
+MD5sum: e052964a64dd3dd3cc2bf011c67d27cd
+SHA1: 3b2d8bf965947d1290d94b24078f6f0b4f59c078
+SHA256: 46b3f2eb69ffb1ed02304bb0e956eb46b8c148a5340240955e34ea52ad2a2cb9
+Section: admin
+Priority: optional
+Homepage: https://www.cgsecurity.org/wiki/PhotoRec
+Description: graphical file recovery tool (Qt front end to PhotoRec)
+ QPhotoRec is the Qt GUI for PhotoRec, the file carver from the TestDisk
+ project. It recovers lost files (photos, video, documents, archives and
+ several hundred other formats) from hard disks, memory cards, USB sticks
+ and disk images by reading the raw data, ignoring the filesystem.
+ .
+ Ubuntu's testdisk package ships testdisk, photorec and fidentify but is
+ built without Qt, so it has no qphotorec. This package is upstream
+ testdisk-7.2 built for arm64 and contains only qphotorec, its man page,
+ desktop file and icons. Run it as root (sudo -E qphotorec) to see disks.
+
